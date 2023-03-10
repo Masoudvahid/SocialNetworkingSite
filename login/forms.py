@@ -1,6 +1,18 @@
 from django.contrib.auth.forms import UserCreationForm
+from django import forms
 
 from .models import User
+from django.contrib.auth import authenticate
+
+
+class LoginForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["username"].label = "Username"
+        self.fields["password"].label = "Password"
+
+    username = forms.CharField(max_length=100)
+    password = forms.CharField(widget=forms.PasswordInput)
 
 
 class RegisterForm(UserCreationForm):

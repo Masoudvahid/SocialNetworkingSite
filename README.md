@@ -6,10 +6,10 @@
 - [x] Implemented register page
 - [x] Change structure of login urls
 - [x] Register shows errors
+- [x] Register and Login use Django forms instead of HTML
 
 ### Left to do:
 
-- [ ] Create a form for Login instead of actual login
 - [ ] Use postgresql instead of sqlite
 - [ ] Think if its better to use different class for users(Not same as Django Admin uses)
  
