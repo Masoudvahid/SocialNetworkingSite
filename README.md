@@ -30,6 +30,20 @@ Also if an app is added to the project, must run
 python manage.py makemigrations name_of_new_app
 ```
 
+To create an __admin user__ which also works as a webpage user, just use command:
+```
+python manage.py createsuperuser
+```
+
+To run the project:
+```
+python manage.py runserver 
+```
+or
+```
+python manage.py runserver 'port'
+```
+
 Once an app is created, it has its own folder, for now we have apps called 'login' and 'mainpage', each app has urls(managed in urls.py), these urls connect to __views__ which are other component of Django, a __view__ is the way Django handles and renders each html file.
 
 Basically for every part of the project, there's only need to modify the respective app.
