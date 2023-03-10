@@ -2,14 +2,16 @@
 
 ### Work done:
 
--  [x] Login implemented
+- [x] Login implemented
+- [x] Need to implement register page
 
 ### Left to do:
 
-- [ ] Need to implement register page
 - [ ] Use postgresql instead of sqlite
 - [ ] Change structure of login urls
-
+- [ ] Make register show errors
+- [ ] Think if its better to use different class for users(Not same as Django Admin uses)
+ 
 ### Notes:
 
 - To register an account use the admin, or command 'createsuperuser'
