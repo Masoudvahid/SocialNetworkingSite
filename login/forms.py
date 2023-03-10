@@ -12,7 +12,7 @@ class RegisterForm(UserCreationForm):
         self.fields["password2"].label = "Confirm Password"
         self.fields["first_name"].label = "First Name"
         self.fields["last_name"].label = "Last Name"
-        self.fields["phone"].label = "Phone"
+        self.fields["phone"].label = "Phone number"
 
     class Meta:
         model = User

@@ -29,28 +29,24 @@ def login_view(request):
     return render(request, "login/login.html", {"title": "Login!"})
 
 
-##############################################
-# Too insecure register, make it better yet  #
-##############################################
-
-
 def register_view(request):
+    form = RegisterForm(request.POST or None)
+    context = {"title": "Register!", "form": form}
+
     if request.user.is_authenticated:
         return redirect("home")
 
-    form = RegisterForm(request.POST or None)
     if request.method == "POST":
         if form.is_valid():
             form.save()
+            # Add a success message in the future if possible
             return redirect("login")
         else:
-            print("CHECK THIS\n", form)
-            return render(
-                request,
-                "login/register.html",
-                {"error": "Something went wrong"},
-            )
-    return render(request, "login/register.html", {"form": form, "title": "Register!"})
+            # I want to change this
+            # each error comes as a list of one string, and i extract the string using [0]
+            # It could be done better
+            context["errors"] = [error[0] for error in form.errors.values()]
+    return render(request, "login/register.html", context=context)
 
 
 def logout_view(request):

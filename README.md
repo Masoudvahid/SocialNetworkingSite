@@ -3,13 +3,14 @@
 ### Work done:
 
 - [x] Login implemented
-- [x] Need to implement register page
+- [x] Implemented register page
+- [x] Change structure of login urls
+- [x] Register shows errors
 
 ### Left to do:
 
+- [ ] Create a form for Login instead of actual login
 - [ ] Use postgresql instead of sqlite
-- [ ] Change structure of login urls
-- [ ] Make register show errors
 - [ ] Think if its better to use different class for users(Not same as Django Admin uses)
  
 ### Notes:
