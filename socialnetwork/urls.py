@@ -19,7 +19,8 @@ from mainpage import views as mainpage_views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("", mainpage_views.home_view, name="empty_address"),
     path("", include("login.urls")),
     path("home/", include("mainpage.urls")),
-    path("", mainpage_views.home_view, name="empty_address"),
+    path("chats/", include("chats.urls")),
 ]
