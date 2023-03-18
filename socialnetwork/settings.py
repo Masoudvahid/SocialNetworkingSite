@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "login",
     "mainpage",
+    "search",
+    "profiles",
 ]
 
 MIDDLEWARE = [
@@ -126,3 +128,5 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "login.User"
+
+BASE_URL = "http://127.0.0.1:8000"
