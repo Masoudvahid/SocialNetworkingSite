@@ -1,3 +1,4 @@
 # Social Networking Site
 
-Nothing to read here, so dontreadme :)
+commands which should be run:
+`python manage.py collectstatic`
