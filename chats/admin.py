@@ -1,5 +1,4 @@
 from django.contrib import admin
-from .models import Messages, Friends
+from .models import Messages
 
 admin.site.register(Messages)
-admin.site.register(Friends)

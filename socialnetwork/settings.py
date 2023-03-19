@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "crispy_bootstrap4",
     "search",
     "profiles",
+    "accounts",
 ]
 
 MIDDLEWARE = [
@@ -129,6 +130,6 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-AUTH_USER_MODEL = "login.User"
+AUTH_USER_MODEL = "accounts.User"
 
 BASE_URL = "http://127.0.0.1:8000"

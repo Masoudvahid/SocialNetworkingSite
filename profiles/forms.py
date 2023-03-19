@@ -1,22 +1,25 @@
 from django import forms
 
-from login.models import User
+from accounts.models import User
 
 
 class AccountUpdateForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ["email",
-                  "phone",
-                  "bio",
-                  "first_name",
-                  "last_name",
-                  ]
+        fields = [
+            "email",
+            "phone",
+            "bio",
+            "first_name",
+            "last_name",
+        ]
 
     def clean_email(self):
         email = self.cleaned_data["email"].lower()
         try:
-            user = User.objects.exclude(username=self.instance.username).get(email=email)
+            user = User.objects.exclude(username=self.instance.username).get(
+                email=email
+            )
         except User.DoesNotExist:
             return email
         raise forms.ValidationError('Email "%s" is already in use.' % email)

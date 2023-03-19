@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from login.models import User
+from accounts.models import User
 from django.conf import settings
 from .forms import AccountUpdateForm
 
@@ -41,7 +41,7 @@ def profile_view(request, *args, **kwargs):
     context["is_friend"] = is_friend
     context["BASE_URL"] = settings.BASE_URL
 
-    return render(request, 'profiles/profile.html', context)
+    return render(request, "profiles/profile.html", context)
 
 
 def edit_profile_view(request, *args, **kwargs):
@@ -62,15 +62,18 @@ def edit_profile_view(request, *args, **kwargs):
             form.clean_email()
             return redirect("profile:view", username=user.username)
         else:
-            form = AccountUpdateForm(request.POST, instance=request.user,
-                                     initial={
-                                         "username": user.username,
-                                         "email": user.email,
-                                         "phone": user.phone,
-                                         "bio": user.bio,
-                                         "first_name": user.first_name,
-                                         "last_name": user.last_name
-                                     })
+            form = AccountUpdateForm(
+                request.POST,
+                instance=request.user,
+                initial={
+                    "username": user.username,
+                    "email": user.email,
+                    "phone": user.phone,
+                    "bio": user.bio,
+                    "first_name": user.first_name,
+                    "last_name": user.last_name,
+                },
+            )
             context["form"] = form
     else:
         form = AccountUpdateForm(
@@ -80,7 +83,8 @@ def edit_profile_view(request, *args, **kwargs):
                 "phone": user.phone,
                 "bio": user.bio,
                 "first_name": user.first_name,
-                "last_name": user.last_name
-            })
+                "last_name": user.last_name,
+            }
+        )
     context["form"] = form
     return render(request, "profiles/edit_profile.html", context)

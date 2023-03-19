@@ -6,34 +6,34 @@
 </head>
 
 <body>
-<h2>Search for other users</h2>
-<form action="/search/" method="GET">
-    <input type="text" name="q"/>
-    <input type="submit" value="Search"/>
-</form>
+    <h2>Search for other users</h2>
+    <form action="/search/" method="GET">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+    </form>
 
-{% if error %}
+    {% if error %}
     <p style="color:red">ERROR: {{ error }}</p>
-{% else %}
+    {% else %}
     {% if accounts %}
-        {% for account in accounts %}
-            <a href="{% url 'profile:view' username=account.0.username %}">
-                <h4>{{ account.0.username }}</h4>
-            </a>
-            {% if account.1 %}
-                <p>Your friend</p>
-            {% else %}
-                {% if account.0 !=  request.user %}
-                    <p>Not your friend</p>
-                {% endif %}
-            {% endif %}
-            {% if account.0 == request.user %}
-                <p>
-                    This is you
-                </p>
-            {% endif %}
-        {% endfor %}
+    {% for account in accounts %}
+    <a href="{% url 'profile:view' username=account.0.username %}">
+        <h4>{{ account.0.username }}</h4>
+    </a>
+    {% if account.1 %}
+    <p>Your friend</p>
+    {% else %}
+    {% if account.0 != request.user %}
+    <p>Not your friend</p>
     {% endif %}
-{% endif %}
+    {% endif %}
+    {% if account.0 == request.user %}
+    <p>
+        This is you
+    </p>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endif %}
 
-<body/>
+    <body />

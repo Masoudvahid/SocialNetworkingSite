@@ -1,8 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
-
-from .models import User
-from django.contrib.auth import authenticate
+from accounts.models import User
 
 
 class LoginForm(forms.Form):
@@ -37,3 +35,10 @@ class RegisterForm(UserCreationForm):
             "last_name",
             "phone",
         ]
+
+    def clean(self):
+        cleaned_data = super().clean()
+        first_name = cleaned_data.get("first_name")
+        last_name = cleaned_data.get("last_name")
+        if not first_name or not last_name:
+            raise forms.ValidationError("Please enter your first and last name")

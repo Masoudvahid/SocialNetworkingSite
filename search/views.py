@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from login.models import User
+from accounts.models import User
 
 
 def search_view(request):
