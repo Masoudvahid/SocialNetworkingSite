@@ -3,6 +3,9 @@
 
 <div class="login-form">
     <div class="form-header">
+        <p>
+            <button class="button2" id="register-button">Register</button>
+        </p>
         <div class="title">Login</div>
     </div>
     <div class="form-container">
@@ -58,5 +61,14 @@
                 console.error('Error:', error);
             });
 
+    });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    const registerButton = document.getElementById('register-button');
+    registerButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        window.location.href = '/register'
     });
 </script>

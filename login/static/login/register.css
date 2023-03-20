@@ -1,11 +1,14 @@
 @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.min.css";
+
 @import "https://fonts.googleapis.com/css?family=Open+Sans:400,600|Raleway";
+
 
 * {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
 }
+
 
 body {
     background: url("http://hdqwalls.com/download/lake-forest-mountains-illustration-4k-fv-1920x1080.jpg") center center no-repeat;
@@ -26,7 +29,6 @@ body {
 
 .register-form .form-header {
     position: absolute;
-    top: 0px;
     width: 100%;
     height: 140px;
 }
@@ -38,7 +40,7 @@ body {
 }
 
 .register-form .form-header .title {
-    padding: 50px 0px 5px;
+    padding: 50px 9px 5px 130px;
     display: inline-block;
     font-size: 30px;
     font-weight: 600;
@@ -46,7 +48,6 @@ body {
     margin-top: 30px;
     margin-left: 60px;
     font-family: "Open Sans", "Raleway", sans-serif;
-    font-weight: 600;
     text-transform: uppercase;
     border-bottom: 10px solid #f1f1f1;
 }
@@ -89,9 +90,9 @@ body {
     font-family: "Open Sans", "Raleway", sans-serif;
 }
 
-.register-form .form-container .form-element button {
-    width: 100%;
-    height: 50px;
+.register-form .form-container .form-element .button {
+    width: 70%;
+    height: 60px;
     border-radius: 30px;
     background: #a5414b;
     color: #f1f1f1;
@@ -103,6 +104,25 @@ body {
     text-transform: uppercase;
     cursor: pointer;
 }
+
+.button2 {
+    position: absolute;
+    margin-left: 65px;
+    margin-top: 80px;
+    width: 20%;
+    height: 40px;
+    border-radius: 30px;
+    background: #a5414b;
+    color: #f1f1f1;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    font-family: "Open Sans", "Raleway", sans-serif;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
 
 .register-form .form-container .form-element.forgot-link {
     position: absolute;
