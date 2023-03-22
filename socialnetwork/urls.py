@@ -16,10 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from mainpage import views as mainpage_views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("", mainpage_views.home_view, name="empty_address"),
     path("", include("login.urls")),
     path("home/", include("mainpage.urls")),
+    path("chats/", include("chats.urls")),
     path("", mainpage_views.home_view, name="empty_address"),
+    path("", include("search.urls")),
+    path("", include(("profiles.urls", "profile"), namespace="profile")),
+    path('password_change/done/',
+         auth_views.PasswordChangeDoneView.as_view(template_name='profiles/password_change_done.html'),
+         name="password_change_done"),
+    path('password_change/', auth_views.PasswordChangeView.as_view(template_name='profiles/password_change.html'),
+         name="password_change"),
 ]

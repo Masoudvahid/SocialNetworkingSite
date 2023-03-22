@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+<form method="post">{% csrf_token %}
+    <input  name="email" placeholder="Email address" required="false"
+           autofocus value={{ form.initial.email }}>
+
+    <input name="phone" placeholder="Phone" required="false"
+           autofocus value={{ form.initial.phone }}>
+
+    <input name="bio" placeholder="Bio" required="false"
+           autofocus value={{ form.initial.bio }}>
+
+    <input name="first_name" placeholder="First Name" required="false"
+           autofocus value={{ form.initial.first_name }}>
+
+    <input name="last_name" placeholder="Last Name" required="false"
+           autofocus value={{ form.initial.last_name }}>
+
+    {% for field in form %}
+        <p>
+            {% for error in field.errors %}
+                <p style="color: red">{{ error }}</p>
+            {% endfor %}
+        </p>
+    {% endfor %}
+    {% if form.non_field_errors %}
+        <div style="color: red">
+            <p>{{ form.non_field_errors }}</p>
+        </div>
+
+    {% endif %}
+
+
+    <button type="submit">Save</button>
+
+
+</form>
+
+</body>
+</html>

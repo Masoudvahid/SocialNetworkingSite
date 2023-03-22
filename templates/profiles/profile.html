@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{ title }}</title>
+</head>
+
+<body>
+<p>Username:</p>
+<h2>@{{ username }}</h2>
+<p>Name:</p>
+<h1>{{ first_name }} {{ last_name }}</h1>
+<p>Email:</p>
+<h2>{{ email }}</h2>
+<p>Telephone:</p>
+<h2>{{ phone }}</h2>
+<p>Bio:</p>
+<h2>{{ bio }}</h2>
+
+
+{% if is_self %}
+    <a href="{% url 'profile:edit' username=request.user.username %}">Update information</a>
+    <a href="{% url 'password_change' %}">Change password</a>
+{% endif %}
+
+
+<script type="text/javascript">
+    function onFriendRemoved() {
+        location.reload();
+    }
+
+    function triggerAcceptFriendRequest(friend_request_id) {
+        //acceptFriendRequest(friend_request_id, onFriendRequestAccepted)
+    }
+
+    function triggerDeclineFriendRequest(friend_request_id) {
+        //declineFriendRequest(friend_request_id, onFriendRequestDeclined)
+    }
+
+</script>
+{#% include 'snippets/remove_friend.html' %#}
+
+</body>
