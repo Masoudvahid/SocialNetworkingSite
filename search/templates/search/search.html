@@ -6,8 +6,9 @@
 </head>
 
 <body>
+    <a href="{% url 'home' %}">HOME</a>
     <h2>Search for other users</h2>
-    <form action="/search/" method="GET">
+    <form action="/search" method="GET">
         <input type="text" name="q" />
         <input type="submit" value="Search" />
     </form>

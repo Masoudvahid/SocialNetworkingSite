@@ -10,6 +10,7 @@
 
 ### Left to do:
 
+- [ ] Fix avatar issue
 - [ ] Fix inheritance of templates
 - [ ] Use postgresql instead of sqlite
 - [ ] Add friends
