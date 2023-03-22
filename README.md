@@ -17,10 +17,13 @@
 - [ ] Add posts
 - [ ] Add comments
 - [ ] Add likes
- 
+
 ### Notes:
 
 - To register an account use the admin, or command 'createsuperuser'
 - To create user for admin, use 'createsuperuser'
 - Remember to make migrations to DB.
 - Other less important fixes noted in files.
+
+commands which should be run:
+`python manage.py collectstatic`

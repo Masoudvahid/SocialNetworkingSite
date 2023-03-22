@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% if title %}
+    <title>{{title}}</title>
+    {% else %}
+    <title>Fix this thing...</title>
+    {% endif %}
+</head>
+
+<body>
+    {% if title %}
+    <h1>Welcome to {{title}}! </h1>
+    {% else %}
+    <h1>Also fix this...</h1>
+    {% endif %}
+
+    {% if errors %}
+    {%for error in errors %}
+    <p style="color:red">ERROR: {{error}}</p>
+    {% endfor %}
+    {% endif %}
+
+    <a href="{% url 'login' %}">Login</a>
+    <br>
+    <a href="{% url 'register' %}">Register</a>
+
+    {% block content %} {% endblock %}
+
+</body>
+
+</html>

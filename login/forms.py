@@ -36,9 +36,16 @@ class RegisterForm(UserCreationForm):
             "phone",
         ]
 
-    def clean(self):
-        cleaned_data = super().clean()
-        first_name = cleaned_data.get("first_name")
-        last_name = cleaned_data.get("last_name")
-        if not first_name or not last_name:
-            raise forms.ValidationError("Please enter your first and last name")
+    def save(self, commit=True):
+        user = super(RegisterForm, self).save(commit=False)
+        user.username = self.cleaned_data['username']
+        user.first_name = self.cleaned_data['first_name']
+        user.last_name = self.cleaned_data['last_name']
+        user.email = self.cleaned_data['email']
+        user.phone = self.cleaned_data['phone']
+        user.password1 = self.cleaned_data['password1']
+        user.password2 = self.cleaned_data['password2']
+
+        if commit:
+            user.save()
+        return user
