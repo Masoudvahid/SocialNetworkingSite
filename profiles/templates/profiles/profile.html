@@ -10,17 +10,38 @@
 <h2>@{{ username }}</h2>
 <p>Name:</p>
 <h1>{{ first_name }} {{ last_name }}</h1>
-<p>Email:</p>
-<h2>{{ email }}</h2>
-<p>Telephone:</p>
-<h2>{{ phone }}</h2>
-<p>Bio:</p>
-<h2>{{ bio }}</h2>
+{% if is_friend or is_self %}
+    <p>Email:</p>
+    <h2>{{ email }}</h2>
+    <p>Telephone:</p>
+    <h2>{{ phone }}</h2>
+    <p>Bio:</p>
+    <h2>{{ bio }}</h2>
+{% endif %}
 
+{% if is_friend %}
+    <h2>You are friends</h2>
+{% endif %}
 
-{% if is_self %}
-    <a href="{% url 'profile:edit' username=request.user.username %}">Update information</a>
-    <a href="{% url 'password_change' %}">Change password</a>
+{% if is_logged_in %}
+    {% if is_self %}
+        <a href="{% url 'profile:edit' username=request.user.username %}">Update information</a>
+        <a href="{% url 'password_change' %}">Change password</a>
+    {% elif not is_friend %}
+        {% if status_request == 0 %}
+            <h2>Send friend request</h2>
+            <a href="{% url 'profile:add_friend' username=username %}">
+                <button type="button" class="btn btn-primary">Add friend</button>
+            </a>
+        {% elif status_request == 1 %}
+            <h2>Friend request sent</h2>
+        {% elif status_request == 2 %}
+            <h2>Friend request received</h2>
+            <a href="{% url 'profile:add_friend' username=username %}">
+                <button type="button" class="btn btn-primary">Accept friend request</button>
+            </a>
+        {% endif %}
+    {% endif %}
 {% endif %}
 
 

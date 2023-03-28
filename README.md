@@ -7,14 +7,16 @@
 - [x] Change structure of login urls
 - [x] Register shows errors
 - [x] Register and Login use Django forms instead of HTML
+- [x] Added friends and friend requests
+- [x] Added profile page
 
 ### Left to do:
 
+- [ ] Add chat link to profile page
+- [ ] Add list of friends requests and friends
 - [ ] Fix avatar issue
 - [ ] Fix inheritance of templates
 - [ ] Use postgresql instead of sqlite
-- [ ] Add friends
-- [ ] Add friend requests
 - [ ] Add posts
 - [ ] Add comments
 - [ ] Add likes

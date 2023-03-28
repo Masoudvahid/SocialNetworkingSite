@@ -19,11 +19,23 @@
 
 <center>
     <div class="col">
+        <a href="{% url 'home' %}">
+            <div class="col"><h2 style="padding-left: 16px;">Home</h2></div>
+        </a>
+        <a href="{% url 'profile:view' username=request.user.username %}">
+            <div class="col"><h2 style="padding-left: 16px;">Profile</h2></div>
+        </a>
+        <a href="{% url 'search' %}">
+            <div class="col"><h2 style="padding-left: 16px;">Search</h2></div>
+        </a>
         <a href="{% url 'chats' %}">
             <div class="col"><h2 style="padding-left: 16px;">Chat</h2></div>
         </a>
-        <a href="{% url 'search_chats' %}">Search</a>
-        <a href="{% url 'logout' %}">Logout</a>
+        {#        <a href="{% url 'search_chats' %}">Search</a>#}
+        <a href="{% url 'logout' %}">
+            <div class="col"><h2 style="padding-left: 16px;">Logout</h2></div>
+        </a>
+
     </div>
 
     <div class="wrapper" style="width: 400px">

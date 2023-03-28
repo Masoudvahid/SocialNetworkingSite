@@ -6,20 +6,46 @@
 </head>
 <body>
 <form method="post">{% csrf_token %}
-    <input  name="email" placeholder="Email address" required="false"
-           autofocus value={{ form.initial.email }}>
 
-    <input name="phone" placeholder="Phone" required="false"
-           autofocus value={{ form.initial.phone }}>
+    <label>
+        Email:
+        <input name="email" placeholder="Email address" required="false"
+               autofocus value={{ form.initial.email }}>
 
-    <input name="bio" placeholder="Bio" required="false"
-           autofocus value={{ form.initial.bio }}>
+    </label>
+    <br>
+    <br>
 
-    <input name="first_name" placeholder="First Name" required="false"
-           autofocus value={{ form.initial.first_name }}>
+    <label>
+        Phone:
+        <input name="phone" placeholder="Phone" required="false"
+               autofocus value={{ form.initial.phone }}>
+    </label>
+    <br>
+    <br>
 
-    <input name="last_name" placeholder="Last Name" required="false"
-           autofocus value={{ form.initial.last_name }}>
+    <label>
+        Bio:
+        <input name="bio" placeholder="Bio" required="false"
+               autofocus value={{ form.initial.bio }}>
+    </label>
+
+    <br>
+    <br>
+
+    <label>
+        First name:
+        <input name="first_name" placeholder="First Name" required="false"
+               autofocus value={{ form.initial.first_name }}>
+    </label>
+    <br>
+    <br>
+
+    <label>
+        Last name:
+        <input name="last_name" placeholder="Last Name" required="false"
+               autofocus value={{ form.initial.last_name }}>
+    </label>
 
     {% for field in form %}
         <p>
