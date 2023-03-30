@@ -12,8 +12,6 @@
 
 ### Left to do:
 
-- [ ] Add chat link to profile page
-- [ ] Add list of friends requests and friends
 - [ ] Fix avatar issue
 - [ ] Fix inheritance of templates
 - [ ] Use postgresql instead of sqlite
@@ -23,7 +21,6 @@
 
 ### Notes:
 
-- To register an account use the admin, or command 'createsuperuser'
 - To create user for admin, use 'createsuperuser'
 - Remember to make migrations to DB.
 - Other less important fixes noted in files.

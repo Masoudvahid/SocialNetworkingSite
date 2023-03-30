@@ -38,7 +38,6 @@ def login_view(request):
                 if user is not None:
                     login(request, user)
                     return HttpResponse("parent.Response_OK()", content_type="application/x-javascript")
-                    return redirect("home")
                 else:
                     # I want to change this
                     # each error comes as a list of one string, and i extract the string using [0]

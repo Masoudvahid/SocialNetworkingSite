@@ -68,12 +68,15 @@ def add_friend(request, username):
     # If the friend has sent a friend request
     if Friends.objects.filter(user=friend, friend=user).exists():
         friendship = Friends.objects.get(user=friend, friend=user)
-        friendship.is_request = False
-        friendship.save()
-        friendship = Friends(user=user, friend=friend)
-        friendship.is_request = False
-        friendship.save()
-        print("Friend added")
+        if friendship.is_request:
+            friendship.is_request = False
+            friendship.save()
+            friendship = Friends(user=user, friend=friend)
+            friendship.is_request = False
+            friendship.save()
+            print("Friend added")
+        else:
+            print("Friend already exists")
 
     # No relationship exists
     if not Friends.objects.filter(user=user, friend=friend).exists():
@@ -82,6 +85,26 @@ def add_friend(request, username):
         print("Request sent")
     else:
         print("Friend already exists")
+
+    return redirect("profile:view", username=friend.username)
+
+
+def remove_friend(request, username):
+    if not request.user.is_authenticated:
+        return redirect("login")
+
+    friend = User.objects.get(username=username)
+    user = User.objects.get(username=request.user.username)
+
+    if Friends.objects.filter(user=user, friend=friend).exists():
+        friendship = Friends.objects.get(user=user, friend=friend)
+        friendship.delete()
+        print("Friend removed")
+
+    if Friends.objects.filter(user=friend, friend=user).exists():
+        friendship = Friends.objects.get(user=friend, friend=user)
+        friendship.delete()
+        print("Friend removed")
 
     return redirect("profile:view", username=friend.username)
 

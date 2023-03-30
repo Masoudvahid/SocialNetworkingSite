@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Friends</title>
+</head>
+<body>
+    <a href="{% url 'home' %}">Home</a>
+{#    Add other headers by inheritance later #}
+    <h1>Friends</h1>
+    {% for friend in friends %}
+        <p>{{ friend }}</p>
+    {% endfor %}
+</body>
+</html>
