@@ -1,6 +1,10 @@
 @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.min.css";
 @import "https://fonts.googleapis.com/css?family=Open+Sans:400,600|Raleway";
 
+:root {
+    --background_hover: #C96E77;
+}
+
 * {
     margin: 0px;
     padding: 0px;
@@ -100,9 +104,15 @@ body {
     font-family: "Open Sans", "Raleway", sans-serif;
 }
 
-.login-form .form-container .form-element button {
+.button2_hover:hover {
+    background: var(--background_hover);
+    text-decoration: none;
+}
+
+.button {
     width: 70%;
     height: 60px;
+
     border-radius: 30px;
     background: #a5414b;
     color: #f1f1f1;

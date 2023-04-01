@@ -1,0 +1,65 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'mainpage/home.css' %}">
+
+<div class="side-bar">
+    <a class="LeftMenu__itemLink" href="{% url 'profile:view' username=request.user.username %}">
+        <div class="LeftMenu__icon">
+            <svg fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
+            </svg>
+        </div>
+        <span class="LeftMenu__itemLabel LeftMenu__button"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">My profile</font></font></span>
+        <span class="left_count_wrap fl_r left_void"><span class="inl_bl"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">0</font></font></span></span>
+    </a>
+    <a class="LeftMenu__itemLink" href="/home">
+        <div class="LeftMenu__icon">
+            <svg fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
+            </svg>
+        </div>
+        <span class="LeftMenu__itemLabel LeftMenu__button"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">News</font></font></span>
+        <span class="left_count_wrap fl_r left_void"><span class="inl_bl"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">0</font></font></span></span>
+    </a>
+
+    <a class="LeftMenu__itemLink" href="/chats">
+        <div class="LeftMenu__icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            </svg>
+        </div>
+        <span class="LeftMenu__itemLabel LeftMenu__button"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Messages</font></font></span>
+        <span class="left_count_wrap fl_r left_void"><span class="inl_bl"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">0</font></font></span></span>
+    </a>
+
+    <a class="LeftMenu__itemLink" href="/friends">
+        <div class="LeftMenu__icon">
+            <svg fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
+            </svg>
+        </div>
+        <span class="LeftMenu__itemLabel LeftMenu__button"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">friends</font></font></span>
+        <object type="internal/link"><a href="/friends?section=requests" class="left_count_wrap fl_r left_void"><span
+                class="inl_bl">0</span></a></object>
+    </a>
+
+    <a class="LeftMenu__itemLink" href="/logout">
+        <div class="LeftMenu__icon">
+            <svg fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
+            </svg>
+        </div>
+        <span class="LeftMenu__itemLabel LeftMenu__button"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">logout</font></font></span>
+        <object type="internal/link"><a href="/friends?section=requests" class="left_count_wrap fl_r left_void"><span
+                class="inl_bl">0</span></a></object>
+    </a>
+</div>
+
+<div class="main-panel">
+    <div class="post">
+        <b>Hello <br> This is a post! <br> How does it look
+            like?<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></b>
+    </div>
+    <div class="post">
+        <b>Hello <br> This is another post! <br> How does it look
+            like?<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></b>
+    </div>
+</div>
