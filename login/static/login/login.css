@@ -104,6 +104,12 @@ body {
     font-family: "Open Sans", "Raleway", sans-serif;
 }
 
+.login-form .form-container .error-label {
+    color: red;
+    background: #1b1b1b;
+    font-size: 20px
+}
+
 .button2_hover:hover {
     background: var(--background_hover);
     text-decoration: none;
@@ -157,3 +163,4 @@ body {
     font-family: "Open Sans", "Raleway", sans-serif;
     text-decoration: none;
 }
+

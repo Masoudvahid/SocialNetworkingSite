@@ -111,6 +111,12 @@ body {
     cursor: pointer;
 }
 
+.register-form .form-container .error-label {
+    color: red;
+    background: #1b1b1b;
+    font-size: 20px
+}
+
 .button2 {
     position: absolute;
     margin-left: 65px;

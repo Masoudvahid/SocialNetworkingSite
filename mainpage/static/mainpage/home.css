@@ -205,8 +205,7 @@ a:hover {
     font-family: 'Open Sans', sans-serif;
     font-size: 20px;
     color: white;
-    top: 5px;
-    margin: auto;
+    margin: 20px auto auto;
     width: 80%;
     padding: 10px;
     text-align: center;

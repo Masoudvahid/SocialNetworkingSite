@@ -8,29 +8,35 @@
         </p>
         <div class="title">Login</div>
     </div>
+
     <div class="form-container">
+        <form id="login-form">
+            <div class="form-element">
+                <label class="fa fa-user" for="login-username"></label>
+                <input type="text" id="login-username" placeholder="Username" required>
+            </div>
 
-        <div class="form-element">
-            <label class="fa fa-user" for="login-username"></label>
-            <input type="text" id="login-username" placeholder="Username">
-        </div>
+            <div class="form-element">
+                <label class="fa fa-key" for="login-password"></label>
+                <input type="password" id="login-password" placeholder="Password" required>
+            </div>
 
-        <div class="form-element">
-            <label class="fa fa-key" for="login-password"></label>
-            <input type="password" id="login-password" placeholder="Password">
-        </div>
+            <div class="form-element">
+                <p>
+                    <button class="button button2_hover" id="login-button">Login</button>
+                </p>
+            </div>
+        </form>
 
-        <div class="form-element">
-            <p>
-                <button class="button button2_hover" id="login-button">Login</button>
-            </p>
-        </div>
+        <label class="error-label" id="error-label"></label>
 
     </div>
+
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+
     const loginButton = document.getElementById('login-button');
 
     loginButton.addEventListener('click', function (event) {
@@ -51,15 +57,20 @@
                 username: username,
                 password: password
             })
-        }).then((response) => {
-            console.log(response)
-            if (response.ok) {
-                window.location.href = '/home'
-                return response.json();
-            } else {
-                throw new Error('Network response was not ok');
-            }
         })
+            .then(response => response.json())
+            .then((response) => {
+                console.log(response)
+                if (response.ok) {
+                    window.location.href = '/home'
+                } else if (response.empty_fields) {
+                    var $form = $('#login-form');
+                    $form[0].reportValidity();
+
+                    document.getElementById("error-label").innerText = response.message
+                    throw new Error('Network response was not ok');
+                }
+            })
             .catch((error) => {
                 console.error('Error:', error);
             });
