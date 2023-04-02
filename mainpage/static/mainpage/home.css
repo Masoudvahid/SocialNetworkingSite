@@ -190,13 +190,14 @@ a:hover {
 
 .main-panel {
     overflow: auto;
+    text-align: center;
     /*position: relative;*/
     margin: auto;
     top: 16.2%;
     /*left: 50%;*/
     /*transform: translate(-50%, -50%);*/
     width: 700px;
-    height: 750px;
+    height: 770px;
     background: rgba(0, 0, 0, 0.55);
 }
 

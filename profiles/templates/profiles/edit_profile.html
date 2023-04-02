@@ -1,45 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-</head>
-<body>
-<form method="post">{% csrf_token %}
-    <input  name="email" placeholder="Email address" required="false"
-           autofocus value={{ form.initial.email }}>
+{% extends 'base_mainpage.html' %}
+{% load static %}
 
-    <input name="phone" placeholder="Phone" required="false"
-           autofocus value={{ form.initial.phone }}>
+{% block content %}
+    <div class="register-form">
+        <form method="post">{% csrf_token %}
+            <div class="form-container">
 
-    <input name="bio" placeholder="Bio" required="false"
-           autofocus value={{ form.initial.bio }}>
+                <div class="form-element">
+                    <input name="first_name" placeholder="First Name" required="false"
+                           autofocus value={{ form.initial.first_name }}>
+                    <label style="margin-left: -100%" id="my" class="fa fa-user" for="email"></label>
+                </div>
 
-    <input name="first_name" placeholder="First Name" required="false"
-           autofocus value={{ form.initial.first_name }}>
+                <div class="form-element">
+                    <input name="last_name" placeholder="Last Name" required="false"
+                           autofocus value={{ form.initial.last_name }}>
+                    <label style="margin-left: -100%" id="my" class="fa fa-user" for="email"></label>
+                </div>
+                <div class="form-element">
+                    <input name="email" placeholder="Email address" required="false"
+                           autofocus value={{ form.initial.email }}>
+                    <label style="margin-left: -100%" id="my" class="fa fa-at" for="email"></label>
 
-    <input name="last_name" placeholder="Last Name" required="false"
-           autofocus value={{ form.initial.last_name }}>
+                </div>
 
-    {% for field in form %}
-        <p>
-            {% for error in field.errors %}
-                <p style="color: red">{{ error }}</p>
-            {% endfor %}
-        </p>
-    {% endfor %}
-    {% if form.non_field_errors %}
-        <div style="color: red">
-            <p>{{ form.non_field_errors }}</p>
-        </div>
+                <div class="form-element">
+                    <input name="phone" placeholder="Phone" required="false"
+                           autofocus value={{ form.initial.phone }}>
+                    <label style="margin-left: -100%" id="my" class="fa fa-phone" for="email"></label>
+                </div>
 
-    {% endif %}
+                <div class="form-element">
+                    <input name="bio" placeholder="Bio" required="false"
+                           autofocus value={{ form.initial.bio }}>
+                    <label style="margin-left: -100%" id="my" class="fa fa-info" for="email"></label>
+                </div>
 
+                {% for field in form %}
+                    <p>
+                        {% for error in field.errors %}
+                            <p style="color: red">{{ error }}</p>
+                        {% endfor %}
+                {% endfor %}
 
-    <button type="submit">Save</button>
+                {% if form.non_field_errors %}
+                    <div style="color: red">
+                        <p>{{ form.non_field_errors }}</p>
+                    </div>
+                {% endif %}
 
+{#                <button type="submit">Save</button>#}
 
-</form>
+                <div class="form-element ">
+                    <p>
+                        <button type="submit" class="button button2_hover" id="register-button">Save</button>
+                    </p>
+                </div>
 
-</body>
-</html>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

@@ -2,8 +2,8 @@
 @import "https://fonts.googleapis.com/css?family=Open+Sans:400,600|Raleway";
 
 :root {
-    --background_hover: #7694d7;
-
+    --background_hover: #C96E77;
+    --button-background: #a5414b
 }
 
 * {
@@ -17,7 +17,7 @@
 body {
 
     background: url("wallpaperflare.com_wallpaper.jpg") center center no-repeat;
-    background: url("http://hdqwalls.com/download/lake-forest-mountains-illustration-4k-fv-1920x1080.jpg") center center no-repeat;
+    background: url("lake-forest-mountains-illustration-4k-fv-1920x1080.jpg") center center no-repeat;
     background-size: cover;
     min-height: 100vh;
     overflow: hidden;
@@ -67,11 +67,35 @@ a:hover {
 }
 
 .side-bar .LeftMenu__itemLink:hover {
+    background: rgba(0, 0, 0, 0);
+    text-decoration: none;
+}
+
+.side-bar .LeftMenu__button:hover {
     background: var(--background_hover);
     text-decoration: none;
 }
 
 .side-bar .LeftMenu__itemLabel {
+    padding: 0.5em 0.5em 0.5em;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    text-align: center;
+    margin-right: auto;
+    width: 70%;
+    border-radius: 30px;
+    background: var(--button-background);
+    color: #f1f1f1;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    font-family: "Open Sans", "Raleway", sans-serif;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.side-bar .LeftMenu__itemLabel_v1 {
     /*font-family: 'Merriweather', serif;*/
     /*font-family: 'Open Sans', sans-serif;*/
     font-family: 'Roboto Serif', serif;
@@ -101,7 +125,7 @@ a:hover {
     -ms-flex-pack: center;
     justify-content: center;
     margin-right: 10px;
-    color: #3b5998;
+    color: #C96E77;
 }
 
 .side-bar .LeftMenu__icon > svg {
@@ -166,6 +190,7 @@ a:hover {
 
 .main-panel {
     overflow: auto;
+    text-align: left;
     /*position: relative;*/
     margin: auto;
     top: 16.2%;
@@ -181,8 +206,7 @@ a:hover {
     font-family: 'Open Sans', sans-serif;
     font-size: 20px;
     color: white;
-    top: 5px;
-    margin: auto;
+    margin: 20px auto auto;
     width: 80%;
     padding: 10px;
     text-align: center;
