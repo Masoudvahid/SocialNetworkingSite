@@ -1,0 +1,27 @@
+{% extends 'base_mainpage.html' %}
+
+
+{% block content %}
+        <div class="post">
+            <b>Hello <br> This is a post! <br> How does it look
+                like?<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></b>
+        </div>
+        <div class="post">
+            <b>Hello <br> This is another post! <br> How does it look
+                like?<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></b>
+        </div>
+{% endblock %}
+
+
+{% comment %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function load_home() {
+        fetch('{% url 'profile:view' username=request.user.username %}')
+            .then(response => response.text())
+            .then(html => {
+                document.querySelector('#main-panel').innerHTML = html;
+            });
+    }
+
+</script>{% endcomment %}

@@ -90,9 +90,15 @@ body {
     font-family: "Open Sans", "Raleway", sans-serif;
 }
 
-.register-form .form-container .form-element .button {
+.button2_hover:hover {
+    background: #C96E77;
+    /*text-decoration: none;*/
+}
+
+.button {
     width: 70%;
     height: 60px;
+
     border-radius: 30px;
     background: #a5414b;
     color: #f1f1f1;
@@ -105,12 +111,20 @@ body {
     cursor: pointer;
 }
 
+.register-form .form-container .error-label {
+    color: red;
+    background: #1b1b1b;
+    font-size: 20px
+}
+
 .button2 {
     position: absolute;
     margin-left: 65px;
     margin-top: 80px;
+
     width: 20%;
     height: 40px;
+
     border-radius: 30px;
     background: #a5414b;
     color: #f1f1f1;

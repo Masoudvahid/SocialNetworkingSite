@@ -1,71 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-</head>
-<body>
-<form method="post">{% csrf_token %}
+{% extends 'base_mainpage.html' %}
+{% load static %}
 
-    <label>
-        Email:
-        <input name="email" placeholder="Email address" required="false"
-               autofocus value={{ form.initial.email }}>
+{% block content %}
+    <div class="register-form">
+        <form method="post">{% csrf_token %}
+            <div class="form-container">
 
-    </label>
-    <br>
-    <br>
+                <div class="form-element">
+                    <input name="first_name" placeholder="First Name" required="false"
+                           autofocus value={{ form.initial.first_name }}>
+                    <label style="margin-left: -100%" id="my" class="fa fa-user" for="email"></label>
+                </div>
 
-    <label>
-        Phone:
-        <input name="phone" placeholder="Phone" required="false"
-               autofocus value={{ form.initial.phone }}>
-    </label>
-    <br>
-    <br>
+                <div class="form-element">
+                    <input name="last_name" placeholder="Last Name" required="false"
+                           autofocus value={{ form.initial.last_name }}>
+                    <label style="margin-left: -100%" id="my" class="fa fa-user" for="email"></label>
+                </div>
+                <div class="form-element">
+                    <input name="email" placeholder="Email address" required="false"
+                           autofocus value={{ form.initial.email }}>
+                    <label style="margin-left: -100%" id="my" class="fa fa-at" for="email"></label>
 
-    <label>
-        Bio:
-        <input name="bio" placeholder="Bio" required="false"
-               autofocus value={{ form.initial.bio }}>
-    </label>
+                </div>
 
-    <br>
-    <br>
+                <div class="form-element">
+                    <input name="phone" placeholder="Phone" required="false"
+                           autofocus value={{ form.initial.phone }}>
+                    <label style="margin-left: -100%" id="my" class="fa fa-phone" for="email"></label>
+                </div>
 
-    <label>
-        First name:
-        <input name="first_name" placeholder="First Name" required="false"
-               autofocus value={{ form.initial.first_name }}>
-    </label>
-    <br>
-    <br>
+                <div class="form-element">
+                    <input name="bio" placeholder="Bio" required="false"
+                           autofocus value={{ form.initial.bio }}>
+                    <label style="margin-left: -100%" id="my" class="fa fa-info" for="email"></label>
+                </div>
 
-    <label>
-        Last name:
-        <input name="last_name" placeholder="Last Name" required="false"
-               autofocus value={{ form.initial.last_name }}>
-    </label>
+                {% for field in form %}
+                    <p>
+                        {% for error in field.errors %}
+                            <p style="color: red">{{ error }}</p>
+                        {% endfor %}
+                {% endfor %}
 
-    {% for field in form %}
-        <p>
-            {% for error in field.errors %}
-                <p style="color: red">{{ error }}</p>
-            {% endfor %}
-        </p>
-    {% endfor %}
-    {% if form.non_field_errors %}
-        <div style="color: red">
-            <p>{{ form.non_field_errors }}</p>
-        </div>
+                {% if form.non_field_errors %}
+                    <div style="color: red">
+                        <p>{{ form.non_field_errors }}</p>
+                    </div>
+                {% endif %}
 
-    {% endif %}
+{#                <button type="submit">Save</button>#}
 
+                <div class="form-element ">
+                    <p>
+                        <button type="submit" class="button button2_hover" id="register-button">Save</button>
+                    </p>
+                </div>
 
-    <button type="submit">Save</button>
+            </div>
+        </form>
+    </div>
 
-
-</form>
-
-</body>
-</html>
+{% endblock %}
