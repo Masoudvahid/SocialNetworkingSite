@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    :root {
+        --menu-width: 400px;
+    }
+    main {
+        position: fixed;
+        left: var(--menu-width);
+        top: 0px;
+        bottom: 0px;
+        right: 0px;
+        background-color: yellow;
+        overflow: auto;
+    }
+
+    header {
+        width:  var(--menu-width);
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        bottom: 0px;
+        background-color: red;
+    }
+</style>
+<body>
+    <header>
+        <div>Menu</div>
+    </header>
+    <main>
+
+    </main>
+    <script>
+        addEventListener("DOMContentLoaded", (event) => {
+            const main = document.querySelector("main");
+
+            for (let index = 0; index < 1000; index++) {
+                const element = document.createElement("div");
+                element.textContent = "HEllo " + index;
+                main.appendChild(element);
+            }
+        });
+    </script>
+</body>
+</html>

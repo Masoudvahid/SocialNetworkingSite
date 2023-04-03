@@ -63,29 +63,6 @@ def search(request):
         request, "chats/search.html", {"users": not_friends, "friends": friends}
     )
 
-
-def add_friend(request, username):
-    """
-    Add a user to the friend's list
-    :param request:
-    :param username:
-    :return:
-    """
-    if not request.user.is_authenticated:
-        return redirect("login")
-
-    friend = User.objects.get(username=username)
-    user = User.objects.get(username=request.user.username)
-
-    if not Friends.objects.filter(user=user, friend=friend).exists():
-        a = Friends(user=user, friend=friend)
-        a.save()
-        print("Friend added")
-    else:
-        print("Friend already exists")
-    return redirect("/chats/search/")
-
-
 def chats(request):
     if request.user.is_authenticated:
         friends_list = get_friends_list(username=request.user.username)

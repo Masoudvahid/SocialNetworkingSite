@@ -32,4 +32,6 @@ urlpatterns = [
          name="password_change_done"),
     path('password_change/', auth_views.PasswordChangeView.as_view(template_name='profiles/password_change.html'),
          name="password_change"),
+    path('friends/', mainpage_views.view_friends, name='friends'),
+    path('friend_requests/', mainpage_views.view_friend_requests, name='friend_requests'),
 ]

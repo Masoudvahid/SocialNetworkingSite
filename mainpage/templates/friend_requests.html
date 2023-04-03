@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Friend requests</title>
+</head>
+<body>
+    {% for person in requests %}
+        <p>{{ person }} wants to be your friend</p>
+        <a href="{% url 'profile:add_friend' username=person.username %}">
+            <button type="button" class="btn btn-primary">Accept</button>
+        </a>
+    {% endfor %}
+</body>
+</html>

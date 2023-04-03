@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from accounts.models import User
+from chats.views import get_friends_list
+from accounts.models import Friends
 
 
 def search_view(request):
@@ -18,8 +20,10 @@ def search_view(request):
             search_results = User.objects.filter(username__icontains=search_query)
             accounts = []
             for account in search_results:
-                # False for not friends, True for friends
-                accounts.append((account, False))
+                if Friends.objects.filter(user=request.user, friend=account).exists():
+                    accounts.append((account, True))
+                else:
+                    accounts.append((account, False))
             if len(accounts) == 0:
                 error = "Can not find such users"
                 context = {"title": "Search", "accounts": accounts, "error": error}

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse_lazy
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 import json
 
 from .forms import RegisterForm, LoginForm
@@ -37,15 +37,20 @@ def login_view(request):
 
                 if user is not None:
                     login(request, user)
-                    return HttpResponse("parent.Response_OK()", content_type="application/x-javascript")
-                    return redirect("home")
+                    print('User logged in successfully')
+                    return JsonResponse(
+                        {"ok": True, "empty_fields": False, "message": "Logged in successfully"})
                 else:
-                    # I want to change this
-                    # each error comes as a list of one string, and i extract the string using [0]
-                    # It could be done better
+                    print('username or password is incorrect')
                     context["errors"] = [error[0] for error in form.errors.values()]
+                    return JsonResponse(
+                        {"ok": False, "empty_fields": True, "message": "Invalid username or password"})
             else:
+                print('invalid from -> fill in the username and password')
                 context["errors"] = [error[0] for error in form.errors.values()]
+                return JsonResponse(
+                    {"ok": False, "empty_fields": True, "message": "Please enter username and password"})
+
     return render(request, "login/login.html")
 
 
@@ -68,15 +73,16 @@ def register_view(request):
                 password = json.loads(request.body)['password1']
                 password_confirm = json.loads(request.body)['password2']
                 email = json.loads(request.body)['email']
-                print(username, name, lastname, phone, password, password_confirm, email)
                 form.save()
-                # Add a success message in the future if possible
-                return redirect("login")
+                print(username, name, lastname, phone, password, password_confirm, email)
+                print('User created')
+                return JsonResponse({"ok": True, "empty_fields": False, "message": "User created successfully"})
             else:
-                # I want to change this
-                # each error comes as a list of one string, and i extract the string using [0]
-                # It could be done better
-                context["errors"] = [error[0] for error in form.errors.values()]
+                print('Empty fields')
+                context["errors"] = [error[0] + '\n' for error in form.errors.values() if
+                                     error[0] != 'This field is required.']
+                print(context["errors"])
+                return JsonResponse({"ok": False, "form_error": True, "error": context["errors"]})
     return render(request, "login/register.html")
 
 

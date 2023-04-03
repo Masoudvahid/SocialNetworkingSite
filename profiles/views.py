@@ -3,45 +3,108 @@ from django.shortcuts import render, redirect
 from accounts.models import User
 from django.conf import settings
 from .forms import AccountUpdateForm
+from accounts.models import Friends
+from chats.views import get_friends_list
+
+
+def check_friendship(user_1, user_2):
+    if Friends.objects.filter(user=user_1, friend=user_2).exists():
+        return not Friends.objects.get(user=user_1, friend=user_2).is_request
+    elif Friends.objects.filter(user=user_2, friend=user_1).exists():
+        return not Friends.objects.get(user=user_2, friend=user_1).is_request
+    return False
 
 
 def profile_view(request, *args, **kwargs):
     context = {}
     username = kwargs.get("username")
 
-    # user is the user we get from the url
-    # current_user is the user we get from the request
-
     try:
-        user = User.objects.get(username=username)
+        user_profile = User.objects.get(username=username)
     except User.DoesNotExist:
         return HttpResponse("That user doesn't exist.")
 
-    # Fields that are shown in the profile page
-    if user:
-        context["username"] = user.username
-        context["first_name"] = user.first_name
-        context["last_name"] = user.last_name
-        context["email"] = user.email
-        context["phone"] = user.phone
-        context["bio"] = user.bio
+    if user_profile:
+        context["username"] = user_profile.username
+        context["first_name"] = user_profile.first_name
+        context["last_name"] = user_profile.last_name
+        context["email"] = user_profile.email
+        context["phone"] = user_profile.phone
+        context["bio"] = user_profile.bio
 
-    # Is this your profile or other profiles?
     is_self = True
-    is_friend = True
     current_user = request.user
+    is_logged_in = current_user.is_authenticated
 
-    if current_user.is_authenticated and current_user != user:
+    if not is_logged_in:
         is_self = False
-    elif not current_user.is_authenticated:
+    elif current_user.username != username:
         is_self = False
 
-    context["title"] = user
+    is_friend = check_friendship(current_user, user_profile)
+
+    # For status requested 0 = not requested, 1 = requested by me, 2 = requested by other
+    context["status_request"] = 0
+    if Friends.objects.filter(user=current_user, friend=user_profile).exists():
+        context["status_request"] = 1 if Friends.objects.get(user=current_user, friend=user_profile).is_request else 0
+    elif Friends.objects.filter(user=user_profile, friend=current_user).exists():
+        context["status_request"] = 2 if Friends.objects.get(user=user_profile, friend=current_user).is_request else 0
+    context["title"] = user_profile
     context["is_self"] = is_self
+    context["is_logged_in"] = is_logged_in
     context["is_friend"] = is_friend
     context["BASE_URL"] = settings.BASE_URL
 
     return render(request, "profiles/profile.html", context)
+
+
+def add_friend(request, username):
+    if not request.user.is_authenticated:
+        return redirect("login")
+
+    friend = User.objects.get(username=username)
+    user = User.objects.get(username=request.user.username)
+
+    # If the friend has sent a friend request
+    if Friends.objects.filter(user=friend, friend=user).exists():
+        friendship = Friends.objects.get(user=friend, friend=user)
+        if friendship.is_request:
+            friendship.is_request = False
+            friendship.save()
+            friendship = Friends(user=user, friend=friend)
+            friendship.is_request = False
+            friendship.save()
+            print("Friend added")
+        else:
+            print("Friend already exists")
+    elif not Friends.objects.filter(user=user, friend=friend).exists():
+        friendship = Friends(user=user, friend=friend, is_request=True)
+        friendship.save()
+        print("Request sent")
+    else:
+        print("Already sent a request")
+
+    return redirect("profile:view", username=friend.username)
+
+
+def remove_friend(request, username):
+    if not request.user.is_authenticated:
+        return redirect("login")
+
+    friend = User.objects.get(username=username)
+    user = User.objects.get(username=request.user.username)
+
+    if Friends.objects.filter(user=user, friend=friend).exists():
+        friendship = Friends.objects.get(user=user, friend=friend)
+        friendship.delete()
+        print("Friend removed")
+
+    if Friends.objects.filter(user=friend, friend=user).exists():
+        friendship = Friends.objects.get(user=friend, friend=user)
+        friendship.delete()
+        print("Friend removed")
+
+    return redirect("profile:view", username=friend.username)
 
 
 def edit_profile_view(request, *args, **kwargs):
