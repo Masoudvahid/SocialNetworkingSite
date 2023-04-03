@@ -77,14 +77,12 @@ def add_friend(request, username):
             print("Friend added")
         else:
             print("Friend already exists")
-
-    # No relationship exists
-    if not Friends.objects.filter(user=user, friend=friend).exists():
+    elif not Friends.objects.filter(user=user, friend=friend).exists():
         friendship = Friends(user=user, friend=friend, is_request=True)
         friendship.save()
         print("Request sent")
     else:
-        print("Friend already exists")
+        print("Already sent a request")
 
     return redirect("profile:view", username=friend.username)
 
