@@ -1,0 +1,21 @@
+{% extends 'base_mainpage.html' %}
+{% load static %}
+
+{% block content %}
+<form method="post">{% csrf_token %}
+    {% for field in form %}
+    <p>
+        {% for error in field.errors %}
+    <p style="color: red">{{ error }}</p>
+    {% endfor %}
+    {% endfor %}
+    {% if form.non_field_errors %}
+    <div style="color: red">
+        <p>{{ form.non_field_errors }}</p>
+    </div>
+    {% endif %}
+    <button type="submit">Post</button>
+</form>
+
+
+{% endblock %}

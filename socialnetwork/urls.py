@@ -34,4 +34,6 @@ urlpatterns = [
          name="password_change"),
     path('friends/', mainpage_views.view_friends, name='friends'),
     path('friend_requests/', mainpage_views.view_friend_requests, name='friend_requests'),
+    path("posts/", include("posts.urls")),
+
 ]

@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     "profiles",
     "accounts",
     "bootstrap5",
+    "posts",
+    "rest_framework",
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
