@@ -9,6 +9,13 @@ def home_view(request):
     else:
         return redirect("login")
 
+def news(request):
+    if request.user.is_authenticated:
+        name = request.user.first_name + " " + request.user.last_name
+        return render(request, "posts/news.html")
+    else:
+        return redirect("login")
+
 
 def get_friend_list(user):
     friends = [friend.friend.__str__() + " is your friend:)" for friend in Friends.objects.filter(user=user,

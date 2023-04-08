@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+
+import posts.views
 from mainpage import views as mainpage_views
 from django.contrib.auth import views as auth_views
 
@@ -34,6 +36,6 @@ urlpatterns = [
          name="password_change"),
     path('friends/', mainpage_views.view_friends, name='friends'),
     path('friend_requests/', mainpage_views.view_friend_requests, name='friend_requests'),
-    path("posts/", include("posts.urls")),
-
+    path("posts/", include("posts.urls"), name="posts"),
+    path('news/', include(([path('', posts.views.news)], 'posts')))
 ]

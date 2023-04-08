@@ -20,12 +20,31 @@ def posts_view(request):
     """
     if not request.user.is_authenticated:
         return redirect("login")
+    posts = Post.objects.filter(author=request.user.username)
+    serializer = PostSerializer(posts, many=True)
+
+    data_list = serializer.data
+
+    context = {"posts": data_list}
+
+    return render(request, "posts/profile_posts.html", context)
+
+
+@api_view(['GET'])
+def news(request):
+    """
+    return all the posts
+    """
+    if not request.user.is_authenticated:
+        return redirect("login")
     posts = Post.objects.all()
     serializer = PostSerializer(posts, many=True)
 
-    data_list = [serializer.data, []]
+    data_list = serializer.data
 
-    return JsonResponse(data=data_list, status=200, safe=False)
+    context = {"posts": data_list}
+
+    return render(request, "posts/news.html", context)
 
 
 @api_view(['POST'])
