@@ -1,0 +1,23 @@
+{% extends 'base_mainpage.html' %}
+{% block head %}
+    <title>Chats</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'chats/chats_list.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h1 class="chats-list-header">Chats</h1>
+    <div class="chats_list">
+        {% for friend in friends %}
+            <a class="chat" href="{% url 'chat' friend.username %}">
+                <div class="col">
+                    <div class="row">
+                    </div>
+                    <div class="col">
+                        <p>{{ friend }}</p>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}\

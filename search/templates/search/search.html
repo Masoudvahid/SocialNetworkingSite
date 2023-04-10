@@ -1,40 +1,44 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base_mainpage.html' %}
 
-<head>
-    <title>{{ title }}</title>
-</head>
+{% block head %}
+    <title>Search</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'search/search.css' %}">
+{% endblock %}
 
-<body>
-    <a href="{% url 'home' %}">HOME</a>
-    <h2>Search for other users</h2>
+{% block content %}
+    <h2 style="color: white">Search for other users</h2>
     <form action="/search" method="GET">
-        <input type="text" name="q" />
-        <input type="submit" value="Search" />
+        <input class="input-text" type="text" name="q"/>
+        <input class="send-button" type="submit" value="Search"/>
     </form>
 
     {% if error %}
-    <p style="color:red">ERROR: {{ error }}</p>
+        <p style="color:red">ERROR: {{ error }}</p>
     {% else %}
-    {% if accounts %}
-    {% for account in accounts %}
-    <a href="{% url 'profile:view' username=account.0.username %}">
-        <h4>{{ account.0.username }}</h4>
-    </a>
-    {% if account.1 %}
-    <p>Your friend</p>
-    {% else %}
-    {% if account.0 != request.user %}
-    <p>Not your friend</p>
-    {% endif %}
-    {% endif %}
-    {% if account.0 == request.user %}
-    <p>
-        This is you
-    </p>
-    {% endif %}
-    {% endfor %}
-    {% endif %}
+        {% if accounts %}
+            <div>
+                {% for account in accounts %}
+                    <div class="search-result">
+                        <a href="{% url 'profile:view' username=account.0.username %}">
+                            <h4>{{ account.0 }} - {{ account.0.username }}</h4>
+                            {% if account.1 %}
+                                <p>Your friend</p>
+                            {% else %}
+                                {% if account.0 != request.user %}
+                                    <p>Not your friend</p>
+                                {% endif %}
+                            {% endif %}
+                            {% if account.0 == request.user %}
+                                <p>
+                                    This is you
+                                </p>
+                            {% endif %}
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
     {% endif %}
 
-    <body />
+{% endblock %}

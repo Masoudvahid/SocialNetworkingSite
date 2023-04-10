@@ -1,104 +1,32 @@
 from django.shortcuts import render, redirect
+
 from .models import Messages
 from accounts.models import User, Friends
 from django.views.decorators.csrf import csrf_exempt
 from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser
 from chats.serializers import MessageSerializer
+from mainpage.views import get_friend_list
 
-
-def get_friends_list(username):
-    """
-    Get the list of friends of the  user
-    :param: user id
-    :return: list of friends
-    """
-    try:
-        user = User.objects.get(username=username)
-        friends = Friends.objects.filter(user=user)
-        friends_list = []
-        for friend in friends:
-            friends_list.append(User.objects.get(username=friend.friend.username))
-        return friends_list
-    except:
-        return []
-
-
-def search(request):
-    """
-    Search users page
-    :param request:
-    :return:
-    """
-    if not request.user.is_authenticated:
-        return redirect("login")
-    users = list(User.objects.all())
-    for user in users:
-        if user.username == request.user.username:
-            users.remove(user)
-            break
-
-    if request.method == "POST":
-        print("SEARCHING!!")
-        query = request.POST.get("search")
-        user_ls = []
-        for user in users:
-            if query in user.first_name or query in user.username:
-                user_ls.append(user)
-        return render(
-            request,
-            "chats/search.html",
-            {
-                "users": user_ls,
-            },
-        )
-
-    try:
-        users = users[:10]
-    except:
-        users = users[:]
-    friends = get_friends_list(request.user.username)
-    not_friends = [element for element in users if element not in friends]
-    return render(
-        request, "chats/search.html", {"users": not_friends, "friends": friends}
-    )
 
 def chats(request):
     if request.user.is_authenticated:
-        friends_list = get_friends_list(username=request.user.username)
-        return render(request, "chats/Base.html", {"friends": friends_list})
+        friends_list = get_friend_list(request.user)
+        return render(request, "chats/chats_list.html", {"friends": friends_list})
     else:
         return redirect("login")
 
 
 def chat(request, username):
-    """
-    Get the chats between two users.
-    :param request:
-    :param username:
-    :return:
-    """
-    # breakpoint()
-
     friend = User.objects.get(username=username)
-    id = request.user.id
-    curr_user = User.objects.get(id=id)
+    id_user = request.user.id
+    curr_user = request.user
     messages = Messages.objects.filter(
-        sender_name=id, receiver_name=friend.id
-    ) | Messages.objects.filter(sender_name=friend.id, receiver_name=id)
-
+        sender_name=id_user, receiver_name=friend.id
+    ) | Messages.objects.filter(sender_name=friend.id, receiver_name=id_user)
+    context = {"messages": messages, "curr_user": curr_user, "friend": friend}
     if request.method == "GET":
-        friends = get_friends_list(request.user.username)
-        return render(
-            request,
-            "chats/messages.html",
-            {
-                "messages": messages,
-                "friends": friends,
-                "curr_user": curr_user,
-                "friend": friend,
-            },
-        )
+        return render(request, "chats/chats.html", context)
 
 
 @csrf_exempt

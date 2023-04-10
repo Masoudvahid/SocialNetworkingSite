@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from mainpage import views as mainpage_views
 from django.contrib.auth import views as auth_views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -35,3 +36,5 @@ urlpatterns = [
     path('friends/', mainpage_views.view_friends, name='friends'),
     path('friend_requests/', mainpage_views.view_friend_requests, name='friend_requests'),
 ]
+
+urlpatterns += staticfiles_urlpatterns()

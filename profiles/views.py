@@ -4,7 +4,7 @@ from accounts.models import User
 from django.conf import settings
 from .forms import AccountUpdateForm
 from accounts.models import Friends
-from chats.views import get_friends_list
+from mainpage.views import get_friend_list
 
 
 def check_friendship(user_1, user_2):
@@ -34,7 +34,7 @@ def profile_view(request, *args, **kwargs):
 
     is_self = True
     current_user = request.user
-    is_logged_in = current_user.is_authenticated
+    is_logged_in = user_profile.is_authenticated
 
     if not is_logged_in:
         is_self = False
@@ -43,7 +43,7 @@ def profile_view(request, *args, **kwargs):
 
     is_friend = check_friendship(current_user, user_profile)
 
-    # For status requested 0 = not requested, 1 = requested by me, 2 = requested by other
+    # For status request: 0 = not requested, 1 = requested by me, 2 = requested by other
     context["status_request"] = 0
     if Friends.objects.filter(user=current_user, friend=user_profile).exists():
         context["status_request"] = 1 if Friends.objects.get(user=current_user, friend=user_profile).is_request else 0
@@ -66,6 +66,7 @@ def add_friend(request, username):
     user = User.objects.get(username=request.user.username)
 
     # If the friend has sent a friend request
+    # Accept the friend request
     if Friends.objects.filter(user=friend, friend=user).exists():
         friendship = Friends.objects.get(user=friend, friend=user)
         if friendship.is_request:
@@ -77,6 +78,7 @@ def add_friend(request, username):
             print("Friend added")
         else:
             print("Friend already exists")
+    # If the friend has not sent a friend request
     elif not Friends.objects.filter(user=user, friend=friend).exists():
         friendship = Friends(user=user, friend=friend, is_request=True)
         friendship.save()
