@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from accounts.models import Friends
+from django.views.decorators.clickjacking import xframe_options_exempt
 
 
 def home_view(request):
@@ -11,9 +12,20 @@ def home_view(request):
 
 
 def get_friend_list(user):
-    friends = [friend.friend.__str__() + " is your friend:)" for friend in Friends.objects.filter(user=user,
-                                                                                                  is_request=False)]
+    friends = [friend.friend for friend in Friends.objects.filter(user=user,
+                                                                  is_request=False)]
     return friends
+
+
+@xframe_options_exempt
+def friends_bar(request):
+    if not request.user.is_authenticated:
+        return redirect("login")
+
+    user = request.user
+    friends = get_friend_list(user)
+    context = {"friends": friends}
+    return render(request, "friends_list.html", context)
 
 
 def view_friends(request):

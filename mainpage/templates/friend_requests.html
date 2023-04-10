@@ -1,15 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+{% extends 'base_mainpage.html' %}
+
+{% block head %}
     <title>Friend requests</title>
-</head>
-<body>
-    {% for person in requests %}
-        <p>{{ person }} wants to be your friend</p>
-        <a href="{% url 'profile:add_friend' username=person.username %}">
-            <button type="button" class="btn btn-primary">Accept</button>
-        </a>
-    {% endfor %}
-</body>
-</html>
+    {#    {% load static %}#}
+    {#    <link rel="stylesheet" href="{% static 'mainpage/friend_requests.css' %}">#}
+{% endblock %}
+
+{% block content %}
+    <div style="color: white;">
+        <h1>Friend requests</h1>
+        {% if not requests %}
+            <p>You have no friend requests</p>
+        {% else %}
+            {% for person in requests %}
+                <p>{{ person }} wants to be your friend</p>
+                <a href="{% url 'profile:add_friend' username=person.username %}">
+                    <button type="button" class="btn btn-primary">Accept</button>
+                </a>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

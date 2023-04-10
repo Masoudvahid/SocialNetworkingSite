@@ -1,15 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+{% extends 'base_mainpage.html' %}
+
+{% block head %}
     <title>Friends</title>
-</head>
-<body>
-    <a href="{% url 'home' %}">Home</a>
-{#    Add other headers by inheritance later #}
-    <h1>Friends</h1>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'mainpage/friends.css' %}">
+{% endblock %}
+
+{% block content %}
     {% for friend in friends %}
-        <p>{{ friend }}</p>
+        <div class="field">
+            <a style="color: white" href="/profile/{{ friend.username }}">@{{ friend.username }}</a>
+            <p class="field">{{ friend }}</p>
+            {{ friend.email }}
+        </div>
     {% endfor %}
-</body>
-</html>
+{% endblock %}

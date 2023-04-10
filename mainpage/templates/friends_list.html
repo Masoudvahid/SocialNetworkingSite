@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Friends</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'mainpage/friends.css' %}">
+</head>
+<body>
+
+{% for friend in friends %}
+    <div class="field">
+        <h3>{{ friend }}</h3>
+    </div>
+{% endfor %}
+</body>
+</html>

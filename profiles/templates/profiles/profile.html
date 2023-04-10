@@ -1,36 +1,49 @@
 {% extends 'base_mainpage.html' %}
 
+{% block head %}
+    <title>Profile</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'profiles/edit_profile.css' %}">
+    <link rel="stylesheet" href="{% static 'profiles/profile.css' %}">
+{% endblock %}
 
 {% block content %}
+    <div class="container">
+        <p>Username:</p>
+        <h2>@{{ username }}</h2>
+        <p>Name:</p>
+        <h1>{{ first_name }} {{ last_name }}</h1>
+        <p>Email:</p>
+        <h2>{{ email }}</h2>
+        <p>Telephone:</p>
+        <h2>{{ phone }}</h2>
+        <p>Bio:</p>
+        <h2>{{ bio }}</h2>
+        <p>Is logged in:</p> {% if is_logged_in %} <h2>Yes</h2> {% else %} <h2>No</h2> {% endif %}
 
-<!DOCTYPE html>
-<html>
+        {% if is_self %}
+            <a href="{% url 'profile:edit' username=request.user.username %}">Update information</a>
+            <a href="{% url 'password_change' %}">Change password</a>
+        {% elif is_friend %}
+            <h2>You are friends!</h2>
+            <button>
+                <a href="{% url 'profile:remove_friend' username=username %}">Remove friend</a>
+            </button>
+        {% elif status_request == 2 %}
+            <h2>You have a friend request!</h2>
+            <button>
+                <a href="{% url 'profile:add_friend' username=username %}">Accept friend request</a>
+            </button>
+        {% elif status_request == 1 %}
+            <h2>You sent a friend request!</h2>
+        {% else %}
+            <h2>You are not friends!</h2>
+            <button>
+                 <a href="{% url 'profile:add_friend' username=username %}">Send friend request</a>
+            </button>
+        {% endif %}
 
-<head>
-    <title>{{ title }}</title>
-</head>
-
-<body>
-<div class="container">
-
-    <p>Username:</p>
-    <h2>@{{ username }}</h2>
-    <p>Name:</p>
-    <h1>{{ first_name }} {{ last_name }}</h1>
-    <p>Email:</p>
-    <h2>{{ email }}</h2>
-    <p>Telephone:</p>
-    <h2>{{ phone }}</h2>
-    <p>Bio:</p>
-    <h2>{{ bio }}</h2>
-
-
-    {% if is_self %}
-        <a href="{% url 'profile:edit' username=request.user.username %}">Update information</a>
-        <a href="{% url 'password_change' %}">Change password</a>
-    {% endif %}
-
-</div>
+    </div>
 {% endblock %}
 
 <script type="text/javascript">

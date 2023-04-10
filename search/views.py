@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from accounts.models import User
-from chats.views import get_friends_list
+from mainpage.views import get_friend_list
 from accounts.models import Friends
 
 
