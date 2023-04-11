@@ -1,0 +1,61 @@
+{% extends 'base_mainpage.html' %}
+{% load static %}
+
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="header">
+                <p style="float: left; margin-left: 10%">Author: {{ post.author }}</p>
+                <p style="float: right; margin-right: 10%"> {{ post.updated_on }}</p>
+            </div>
+            <div class="content">
+                <p>{{ post.content }}</p>
+            </div>
+            <div class="footer">
+                <p style="margin-left: 10%">likes: {{ post.likes }}</p>
+                <button style="width: 15%; height: 40px; font-size: 14px; margin-left: 75%;"
+                        class="button button2_hover"
+                        id="edit-post">
+                    edit post
+                </button>
+
+                <button style="float: left; margin-left: 10%; margin-top: -7%; width: 7.5%; height: 40px; font-size: 14px;"
+                        class="button button2_hover"
+                        id="edit-post">
+                <label class="fa fa-heart" for="login-password"></label>
+                </button>
+
+            </div>
+        </div>
+
+    {% endfor %}
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        const editPost = document.getElementById('edit-post');
+        editPost.addEventListener('click', function (event) {
+            event.preventDefault();
+            window.location.href = '/posts/edit';
+        });
+    </script>
+
+{% endblock %}
+
+<script>
+    function convert_date(date_string) {
+        var date = new Date(date_string);
+        var options = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+            timeZone: 'UTC'
+        };
+        return date.toLocaleString('en-US', options);
+    }
+
+
+</script>

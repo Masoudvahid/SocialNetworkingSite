@@ -250,25 +250,27 @@ a:hover {
     background: rgba(0, 0, 0, 0.5);
 }
 
-.main-panel .post .header {
+.main-panel .post .content {
     font-family: 'Open Sans', sans-serif;
     font-size: 20px;
-    margin: auto;
+    color: white;
+    margin: 20px auto auto;
     width: 80%;
     padding: 10px;
     text-align: center;
     border: 3px solid white;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.main-panel .post .header {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    text-align: right;
 }
 
 .main-panel .post .footer {
-    top: 5px;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 20px;
-    margin: auto;
-    width: 80%;
-    padding: 10px;
-    text-align: center;
-    border: 3px solid white;
+    font-size: 15px;
+    text-align: left;
 }
 
 .friends-panel {

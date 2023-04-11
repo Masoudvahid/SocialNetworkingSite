@@ -42,8 +42,52 @@
                  <a href="{% url 'profile:add_friend' username=username %}">Send friend request</a>
             </button>
         {% endif %}
+        {% if is_self %}
+            <p><br>PROFILE<br></p>
+            <button style="width: 15%;height: 40px; font-size: 14px" class="button button2_hover"
+                    id="change-password">
+                Change password
+            </button>
+            <button style="width: 15%;height: 40px; font-size: 14px" class="button button2_hover"
+                    id="update-info">
+                Update<br>info
+            </button>
+
+            <p><br>POSTS<br></p>
+
+            <button style="width: 15%;height: 40px; font-size: 14px" class="button button2_hover"
+                    id="show-posts">
+                Show my posts
+            </button>
+            <button style="width: 15%;height: 40px; font-size: 14px" class="button button2_hover"
+                    id="create-post">
+                Create<br>post
+            </button>
+        {% endif %}
 
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        const changePassword = document.getElementById('change-password');
+        changePassword.addEventListener('click', function (event) {
+            event.preventDefault();
+            window.location.href = '/password_change';
+        });
+        const updateInfo = document.getElementById('update-info');
+        updateInfo.addEventListener('click', function (event) {
+            window.location.href = 'edit/';
+        });
+        const createPost = document.getElementById('create-post');
+        createPost.addEventListener('click', function (event) {
+            window.location.href = '/posts/create';
+        });
+        const showPosts = document.getElementById('show-posts');
+        showPosts.addEventListener('click', function (event) {
+            window.location.href = '/posts/';
+        });
+    </script>
+
 {% endblock %}
 
 <script type="text/javascript">
@@ -60,7 +104,5 @@
     }
 
 </script>
-{#% include 'snippets/remove_friend.html' %#}
 
 </body>
-
