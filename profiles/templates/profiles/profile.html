@@ -3,106 +3,71 @@
 {% block head %}
     <title>Profile</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'profiles/edit_profile.css' %}">
     <link rel="stylesheet" href="{% static 'profiles/profile.css' %}">
+
 {% endblock %}
 
 {% block content %}
     <div class="container">
-        <p>Username:</p>
-        <h2>@{{ username }}</h2>
-        <p>Name:</p>
-        <h1>{{ first_name }} {{ last_name }}</h1>
-        <p>Email:</p>
-        <h2>{{ email }}</h2>
-        <p>Telephone:</p>
-        <h2>{{ phone }}</h2>
-        <p>Bio:</p>
-        <h2>{{ bio }}</h2>
-        <p>Is logged in:</p> {% if is_logged_in %} <h2>Yes</h2> {% else %} <h2>No</h2> {% endif %}
+        <div class="user-info">
+            <p-label>Username:</p-label>
+            <p-text> @{{ username }}</p-text>
 
+            <p-label>Name:</p-label>
+            <p-text>{{ first_name }} {{ last_name }}</p-text>
+
+            <p-label>Email:</p-label>
+            <p-text>{{ email }}</p-text>
+
+            <p-label>Telephone:</p-label>
+            <p-text>{{ phone }}</p-text>
+
+            <p-label>Bio:</p-label>
+            <p-text>{{ bio }}</p-text>
+
+            <p-label>Is logged in:</p-label>
+            {% if is_logged_in %}
+                <p-text>Yes</p-text> {% else %}
+                <p-text>No</p-text> {% endif %}
+            {% if is_self %}
+                <button class="button-1 profile">
+                    <a href="{% url 'profile:edit' username=request.user.username %}">Update information</a>
+                </button>
+
+                <button class="button-1 profile">
+                    <a href="{% url 'password_change' %}">Change password</a>
+                </button>
+            {% elif is_friend %}
+                <h2>You are friends!</h2>
+                <button class="button-1 profile">
+                    <a href="{% url 'profile:remove_friend' username=username %}">Remove friend</a>
+                </button>
+            {% elif status_request == 2 %}
+                <h2>You have a friend request!</h2>
+                <button class="button-1 profile">
+                    <a href="{% url 'profile:add_friend' username=username %}">Accept friend request</a>
+                </button>
+            {% elif status_request == 1 %}
+                <h2>You sent a friend request!</h2>
+            {% else %}
+                <h2>You are not friends!</h2>
+                <button class="button-1 profile">
+                    <a href="{% url 'profile:add_friend' username=username %}">Send friend request</a>
+                </button>
+            {% endif %}
+        </div>
         {% if is_self %}
-            <a href="{% url 'profile:edit' username=request.user.username %}">Update information</a>
-            <a href="{% url 'password_change' %}">Change password</a>
-        {% elif is_friend %}
-            <h2>You are friends!</h2>
-            <button>
-                <a href="{% url 'profile:remove_friend' username=username %}">Remove friend</a>
+            <button class= "button-1 posts">
+                <a href="/posts/">Show my posts</a>
             </button>
-        {% elif status_request == 2 %}
-            <h2>You have a friend request!</h2>
-            <button>
-                <a href="{% url 'profile:add_friend' username=username %}">Accept friend request</a>
-            </button>
-        {% elif status_request == 1 %}
-            <h2>You sent a friend request!</h2>
-        {% else %}
-            <h2>You are not friends!</h2>
-            <button>
-                 <a href="{% url 'profile:add_friend' username=username %}">Send friend request</a>
-            </button>
+            <button-1 class="button-1 posts">
+                <a href="/posts/create">Create new post</a>
+            </button-1>
         {% endif %}
-        {% if is_self %}
-            <p><br>PROFILE<br></p>
-            <button style="width: 15%;height: 40px; font-size: 14px" class="button button2_hover"
-                    id="change-password">
-                Change password
-            </button>
-            <button style="width: 15%;height: 40px; font-size: 14px" class="button button2_hover"
-                    id="update-info">
-                Update<br>info
-            </button>
 
-            <p><br>POSTS<br></p>
-
-            <button style="width: 15%;height: 40px; font-size: 14px" class="button button2_hover"
-                    id="show-posts">
-                Show my posts
-            </button>
-            <button style="width: 15%;height: 40px; font-size: 14px" class="button button2_hover"
-                    id="create-post">
-                Create<br>post
-            </button>
-        {% endif %}
 
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        const changePassword = document.getElementById('change-password');
-        changePassword.addEventListener('click', function (event) {
-            event.preventDefault();
-            window.location.href = '/password_change';
-        });
-        const updateInfo = document.getElementById('update-info');
-        updateInfo.addEventListener('click', function (event) {
-            window.location.href = 'edit/';
-        });
-        const createPost = document.getElementById('create-post');
-        createPost.addEventListener('click', function (event) {
-            window.location.href = '/posts/create';
-        });
-        const showPosts = document.getElementById('show-posts');
-        showPosts.addEventListener('click', function (event) {
-            window.location.href = '/posts/';
-        });
-    </script>
-
 {% endblock %}
-
-<script type="text/javascript">
-    function onFriendRemoved() {
-        location.reload();
-    }
-
-    function triggerAcceptFriendRequest(friend_request_id) {
-        //acceptFriendRequest(friend_request_id, onFriendRequestAccepted)
-    }
-
-    function triggerDeclineFriendRequest(friend_request_id) {
-        //declineFriendRequest(friend_request_id, onFriendRequestDeclined)
-    }
-
-</script>
 
 </body>

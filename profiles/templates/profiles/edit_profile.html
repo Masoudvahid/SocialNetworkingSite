@@ -1,5 +1,12 @@
 {% extends 'base_mainpage.html' %}
-{% load static %}
+
+{% block head %}
+    <title>Edit profile</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'profiles/edit_profile.css' %}">
+
+{% endblock %}
+
 
 {% block content %}
     <div class="register-form">
@@ -53,7 +60,7 @@
 
                 <div class="form-element ">
                     <p>
-                        <button type="submit" class="button button2_hover" id="register-button">Save</button>
+                        <button type="submit" class="button-1" id="register-button">Save</button>
                     </p>
                 </div>
 

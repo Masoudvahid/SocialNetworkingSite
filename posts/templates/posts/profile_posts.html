@@ -1,5 +1,11 @@
 {% extends 'base_mainpage.html' %}
-{% load static %}
+
+{% block head %}
+    <title>Profile</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'login/login.css' %}">
+
+{% endblock %}
 
 {% block content %}
     {% for post in posts %}

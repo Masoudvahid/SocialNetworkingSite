@@ -14,14 +14,14 @@ from .forms import RegisterForm, LoginForm
 
 def check_login(request):
     if request.user.is_authenticated:
-        return redirect("home")
+        return redirect("news")
     else:
         return redirect("login")
 
 
 def login_view(request):
     if request.user.is_authenticated:
-        return redirect("home")
+        return redirect("news")
 
     if request.method == "POST":
         if request.accepts("application/json"):
@@ -59,7 +59,7 @@ def register_view(request):
     context = {"title": "Register!", "form": form}
 
     if request.user.is_authenticated:
-        return redirect("home")
+        return redirect("news")
 
     if request.method == "POST":
         if request.accepts("application/json"):
