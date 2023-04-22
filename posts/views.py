@@ -12,6 +12,8 @@ from .models import Post
 from accounts.models import User
 from .serializers import PostSerializer
 
+import json
+
 
 @api_view(['GET'])
 def posts_view(request):
@@ -47,7 +49,7 @@ def news(request):
     return render(request, "posts/news.html", context)
 
 
-@api_view(['POST'])
+# @api_view(['POST'])
 def create_post(request):
     """
     Create post
@@ -56,19 +58,23 @@ def create_post(request):
         return redirect("login")
 
     if request.method == 'POST':
+
         data = {
-            'content': request.data['content'],
+            'content': json.loads(request.body)['content'],
             'author': request.user.username,
         }
 
-        serializer = PostSerializer(data=data)
+        if data['content'] == '':
+            return JsonResponse(data={'error': {'message': 'cannot create empty posts'}}, status=400)
 
+        serializer = PostSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data, status=200)
         else:
-            return JsonResponse(data={'error': {'message': 'unable to process request'}},
-                                status=400)
+            return JsonResponse(data={'error': {'message': 'unable to process request'}}, status=400)
+
+    return render(request, "posts/create.html")
 
 
 @api_view(['DELETE'])

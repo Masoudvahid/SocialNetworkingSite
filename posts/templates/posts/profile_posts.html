@@ -3,7 +3,7 @@
 {% block head %}
     <title>Profile</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'login/login.css' %}">
+    <link rel="stylesheet" href="{% static 'posts/buttons.css' %}">
 
 {% endblock %}
 
@@ -18,10 +18,14 @@
             </div>
             <div class="footer">
                 <p style="margin-left: 10%">likes: {{ post.likes }}</p>
-                <button style="width: 15%; height: 40px; font-size: 14px; margin-left: 75%" class="button button2_hover"
-                        id="edit-post">
-                    edit post
+
+                <button class="posts-button delete" onclick="redirectTo('/posts/delete')">
+                    <i class="fas fa-trash"></i>
                 </button>
+                <button class="posts-button" onclick="redirectTo('/posts/edit')">
+                    <i class="fas fa-edit"></i>
+                </button>
+
             </div>
         </div>
 
@@ -30,6 +34,11 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        function redirectTo(url) {
+            window.location.href = url;
+        }
+
+
         const editPost = document.getElementById('edit-post');
         editPost.addEventListener('click', function (event) {
             event.preventDefault();
