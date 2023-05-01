@@ -9,15 +9,12 @@
 - [x] Register and Login use Django forms instead of HTML
 - [x] Added friends and friend requests
 - [x] Added profile page
-
-### Left to do:
-
-- [ ] Fix avatar issue
-- [ ] Fix inheritance of templates
-- [ ] Use postgresql instead of sqlite
-- [ ] Add posts
-- [ ] Add comments
-- [ ] Add likes
+- [x] Fix avatar issue
+- [x] Fix inheritance of templates
+- [x] Use postgresql instead of sqlite
+- [x] Add posts
+- [x] Add comments
+- [x] Add likes
 
 ### Notes:
 
