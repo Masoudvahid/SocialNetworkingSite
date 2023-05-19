@@ -7,6 +7,7 @@
     max-width: 70%;
     margin-right: auto;
     margin-bottom: 10px;
+    font-size: 1.5em;
 }
 
 .right-chat-bubble {
@@ -19,10 +20,11 @@
     margin-left: auto;
     max-width: 70%;
     margin-bottom: 10px;
+    font-size: 1.5em;
 }
 
 .time-message {
-    font-size: 10px;
+    font-size: 20px;
     font-weight: bold;
     color: rgb(0, 0, 0);
     margin-top: 5px;

@@ -58,9 +58,9 @@
                 }, 800);
             }
 
-            const text_box = '<div class="container darker">' +
+            const text_box = '<div class="right-chat-bubble">' +
                 '<p>{message}</p>' +
-                '<span class="time-right">{time}</span>' +
+                '<span class="time-message">{time}</span>' +
                 '</div>'
 
             //For sending
@@ -107,11 +107,10 @@
             setInterval(receive, 1000)
         })
 
-        const text = '<div class="container">' +
+        const text = '<div class="left-chat-bubble">' +
             '<p>{message}</p>' +
-            '<span class="time-left">{time}</span>' +
+            '<span class="time-message">{time}</span>' +
             '</div>'
-
         function receive() {
             $.get('api/messages/' + sender_id + '/' + receiver_id, function (data) {
                 if (data.length !== 0) {

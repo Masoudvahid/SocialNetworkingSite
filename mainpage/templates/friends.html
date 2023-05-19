@@ -9,7 +9,7 @@
 {% block content %}
     {% for friend in friends %}
         <div class="field">
-            <a style="color: white" href="/profile/{{ friend.username }}">@{{ friend.username }}</a>
+            <a style="color: white; font-size: x-large" href="/profile/{{ friend.username }}">@{{ friend.username }}</a>
             <p class="field">{{ friend }}</p>
             {{ friend.email }}
         </div>

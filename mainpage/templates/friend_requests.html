@@ -2,8 +2,8 @@
 
 {% block head %}
     <title>Friend requests</title>
-    {#    {% load static %}#}
-    {#    <link rel="stylesheet" href="{% static 'mainpage/friend_requests.css' %}">#}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'profiles/edit_profile.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -15,7 +15,7 @@
             {% for person in requests %}
                 <p>{{ person }} wants to be your friend</p>
                 <a href="{% url 'profile:add_friend' username=person.username %}">
-                    <button type="button" class="btn btn-primary">Accept</button>
+                    <button type="button" class="button-1">Accept</button>
                 </a>
             {% endfor %}
         {% endif %}
