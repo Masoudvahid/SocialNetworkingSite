@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% extends 'base_mainpage.html' %}
+
+{% block head %}
+    <title>Create post</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'posts/create.css' %}">
+    <link rel="stylesheet" href="{% static 'posts/buttons.css' %}">
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="create-block">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="clearfix">
+                <button type="submit" class="posts-button">Publish</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

@@ -1,6 +1,77 @@
 .container {
-    margin-top: 50px;
-    text-align: left;
-    background-color: black;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
     color: white;
+    margin: 20px auto auto;
+    padding: 10px;
+    text-align: center;
+    border: 3px solid white;
+    background: rgba(0, 0, 0, 0.5);
 }
+
+.container .user-info {
+    margin: auto auto auto;
+    width: fit-content;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+    border: 1px solid white;
+    background: rgba(0, 0, 0, 0.55);
+}
+
+
+.container .user-info p-label {
+    display: inline;
+    float: left;
+    color: #00cccc;
+
+}
+
+.container .user-info p-text {
+    display: flex;
+    margin: auto;
+    color: #ff0033
+}
+
+.container .user-info p-label::after {
+    content: " ";
+    white-space: pre;
+}
+
+.button-1 {
+    background: #a5414b;
+    border: 1px solid rgba(27, 31, 35, .15);
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    padding: 6px 16px;
+    position: relative;
+    text-align: center;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.button-1:hover {
+    background-color: #2c974b;
+}
+
+.button-1.profile {
+    margin: 8% auto 1% auto;
+}
+
+.button-1.posts {
+    margin: 2% auto 1% auto;
+}
+
+a {
+    color: #ffe1e1;
+    text-decoration: none !important;
+}
+

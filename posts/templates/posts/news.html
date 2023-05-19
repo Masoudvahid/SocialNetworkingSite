@@ -1,0 +1,35 @@
+{% extends 'base_mainpage.html' %}
+
+{% block head %}
+    <title>News</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'posts/buttons.css' %}">
+    <link rel="stylesheet" href="{% static 'profiles/profile.css' %}">
+{% endblock %}
+
+
+
+{% block content %}
+    <button class="button-1 posts">
+        <a href="{% url 'create_post' %}">Create new post</a>
+    </button>
+    {% for post in posts %}
+        <div class="post">
+            <div class="header">
+                <p style="float: left; margin-left: 10%">Author: {{ post.author }}</p>
+                <p style="float: right; margin-right: 10%"> {{ post.updated_on }}</p>
+            </div>
+            <div class="content">
+                <p>{{ post.content }}</p>
+            </div>
+            <div class="footer">
+                <p style="margin-left: 10%">likes: {{ post.likes }}</p>
+                <button class="posts-button like" onclick="location.href='{% url 'like_post' post.id %}'">
+                    <i class="fas fa-heart"></i>
+                </button>
+            </div>
+        </div>
+
+    {% endfor %}
+{% endblock %}
+

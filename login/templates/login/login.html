@@ -62,7 +62,7 @@
             .then((response) => {
                 console.log(response)
                 if (response.ok) {
-                    window.location.href = '/home'
+                    window.location.href = '/news'
                 } else if (response.empty_fields) {
                     var $form = $('#login-form');
                     $form[0].reportValidity();
