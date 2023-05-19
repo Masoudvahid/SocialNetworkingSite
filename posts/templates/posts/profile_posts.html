@@ -8,6 +8,7 @@
 {% endblock %}
 
 {% block content %}
+    <h2 style="color:white">{{ username }}'s posts</h2>
     {% for post in posts %}
         <div class="post">
             <div class="header">
@@ -18,50 +19,14 @@
             </div>
             <div class="footer">
                 <p style="margin-left: 10%">likes: {{ post.likes }}</p>
-
-                <button class="posts-button delete" onclick="redirectTo('/posts/delete')">
-                    <i class="fas fa-trash"></i>
+                <button class="posts-button like" onclick="location.href='{% url 'like_post' post.id %}'">
+                    <i class="fas fa-heart"></i>
                 </button>
-                <button class="posts-button" onclick="redirectTo('/posts/edit')">
-                    <i class="fas fa-edit"></i>
+                <button class="posts-button delete" onclick="location.href='{% url 'delete_post' post.id %}'">
+                    <i class="fas fa-trash-alt"></i>
                 </button>
-
             </div>
         </div>
 
     {% endfor %}
-
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        function redirectTo(url) {
-            window.location.href = url;
-        }
-
-
-        const editPost = document.getElementById('edit-post');
-        editPost.addEventListener('click', function (event) {
-            event.preventDefault();
-            window.location.href = '/posts/edit';
-        });
-    </script>
-
 {% endblock %}
-
-<script>
-    function convert_date(date_string) {
-        var date = new Date(date_string);
-        var options = {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
-            second: 'numeric',
-            timeZone: 'UTC'
-        };
-        return date.toLocaleString('en-US', options);
-    }
-
-
-</script>

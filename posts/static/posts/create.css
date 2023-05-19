@@ -10,20 +10,6 @@
     justify-content: flex-end;
 }
 
-.create-block .post-content {
-    width: 100%;
-    font-size: 18px;
-    padding: 15px 20px 15px 60px;
-    border-radius: 30px;
-    outline: none;
-    border: none;
-    font-family: "Open Sans", "Raleway", sans-serif;
-}
-
-.create-block textarea {
-    resize: none;
-}
-
 .create-block i {
     position: relative;
     top: 50%;
@@ -36,4 +22,26 @@
     line-height: 40px;
     color: #f1f1f1;
     z-index: 5;
+}
+
+.form-container {
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+input[type=text], textarea {
+    width: 100%;
+    font-size: 18px;
+    padding: 15px 20px 15px 60px;
+    border-radius: 30px;
+    outline: none;
+    border: none;
+    font-family: "Open Sans", "Raleway", sans-serif;
+}
+
+/* Clear floats after the form */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
 }

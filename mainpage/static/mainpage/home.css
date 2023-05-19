@@ -289,6 +289,26 @@ a:hover {
     z-index: -1;
     color: rgba(206, 163, 146, 0.95);
     text-align: center;
+    border: 3px solid white;
+}
+
+.friends-panel {
+    overflow: hidden;
+    text-align: left;
+    flex: 1;
+    background: rgba(115, 19, 110, 0.25);
+}
+
+.friends-panel-header {
+    font-family: 'Raleway', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    z-index: -1;
+    color: rgba(206, 163, 146, 0.95);
+    text-align: center;
+
     background: rgba(182, 52, 52, 0.8);
     border: 1px solid rgba(206, 163, 146, 0.95);
     padding: 10px;
