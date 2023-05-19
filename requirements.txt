@@ -1,5 +1,5 @@
-crispy-bootstrap4==2022.1
-Django==4.2.1
-django-bootstrap-v5==1.0.11
-django-rest-framework==0.1.0
-djangorestframework==3.14.0
+crispy-bootstrap4
+Django
+django-bootstrap-v5
+django-rest-framework
+djangorestframework
