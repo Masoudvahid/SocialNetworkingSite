@@ -3,6 +3,8 @@
 {% block head %}
     <title>Profile</title>
     {% load static %}
+    <link rel="stylesheet" href="{% static 'profiles/edit_profile.css' %}">
+
     <link rel="stylesheet" href="{% static 'profiles/profile.css' %}">
 {% endblock %}
 
@@ -32,7 +34,6 @@
                 <button class="button-1 profile">
                     <a href="{% url 'profile:edit' username=request.user.username %}">Update information</a>
                 </button>
-
                 <button class="button-1 profile">
                     <a href="{% url 'password_change' %}">Change password</a>
                 </button>
