@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-ggs-34$_yv==u1l_p8!#=+1z$zor9x_u52t%2+3p2@0r)@^8nk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['miptfacebook.pages.dev']
+ALLOWED_HOSTS = ['miptfacebook.pages.dev', '*']
 
 # Application definition
 
