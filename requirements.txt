@@ -3,3 +3,4 @@ Django
 django-bootstrap-v5
 django-rest-framework
 djangorestframework
+whitenoise
