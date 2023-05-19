@@ -32,11 +32,7 @@
 }
 
 .posts-button.like:hover {
-    background-color: rgb(255, 0, 0);
-}
-
-.posts-button.delete {
-        margin-left: 10%;
+    background-color: rgb(74, 115, 69);
 }
 
 .posts-button.delete:hover {

@@ -8,7 +8,7 @@
     background: rgba(0, 0, 0, 0.55);
 }
 
-.register-form .form-container {
+.form-container {
     position: relative;
     top: 150px;
     padding: 0px 50px;
@@ -16,12 +16,12 @@
     text-align: center;
 }
 
-.register-form .form-container .form-element {
+.form-container .form-element {
     position: relative;
     margin: 20px 0px;
 }
 
-.register-form .form-container .form-element label {
+.form-container .form-element label {
     position: absolute;
     top: 50%;
     transform: translate(10px, -50%);
@@ -34,7 +34,7 @@
     color: #f1f1f1;
 }
 
-.register-form .form-container .form-element input {
+.form-container .form-element input {
     width: 100%;
     padding: 15px 0px;
     font-size: 18px;;

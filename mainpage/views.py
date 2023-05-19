@@ -4,11 +4,8 @@ from django.views.decorators.clickjacking import xframe_options_exempt
 
 
 def home_view(request):
-    if request.user.is_authenticated:
-        name = request.user.first_name + " " + request.user.last_name
-        return render(request, "mainpage/home.html", {"name": name})
-    else:
-        return redirect("login")
+    return news(request)
+
 
 def news(request):
     if request.user.is_authenticated:
