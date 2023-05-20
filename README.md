@@ -22,5 +22,10 @@
 - Remember to make migrations to DB.
 - Other less important fixes noted in files.
 
-commands which should be run:
-`python manage.py collectstatic`
+commands for initiating the app:  
+`python manage.py collectstatic`  
+`python manage.py makemigrations`  
+`python manage.py migrate`  
+
+to run the app you only need this:  
+`python manage.py runserver`  
