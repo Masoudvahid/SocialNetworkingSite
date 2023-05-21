@@ -14,6 +14,8 @@ from .models import Post
 from .forms import PostForm
 from accounts.models import User
 
+from django.contrib import messages
+
 import json
 
 
@@ -114,5 +116,23 @@ def like_post(request, id_post):
         post.likes.remove(request.user)
     else:
         post.likes.add(request.user)
+
+    return redirect('news')
+
+
+def pop_up(request, id_post):
+    if not request.user.is_authenticated:
+        return redirect("login")
+
+    try:
+        post = Post.objects.get(pk=id_post)
+    except Post.DoesNotExist:
+        return Response(data={'error': {'message': 'Post was not found'}}, status=404)
+
+    liked_users = [user.username for user in post.likes.all()]
+    liked_users = ', '.join(liked_users)
+
+    if liked_users:
+        messages.success(request, liked_users)
 
     return redirect('news')

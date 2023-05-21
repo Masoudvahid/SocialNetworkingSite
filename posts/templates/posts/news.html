@@ -27,9 +27,23 @@
                 <button class="posts-button like" onclick="location.href='{% url 'like_post' post.id %}'">
                     <i class="fas fa-heart"></i>
                 </button>
+
+                <button class="posts-button like" style="margin-left: 0" onclick="location.href='{% url 'pop_up' post.id %}'">
+                    <i class="fas fa-list"></i>
+                </button>
+
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message.tags == 'success' %}
+                            <script>
+                                alert('Liked by: {{ message }}');
+                            </script>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+
             </div>
         </div>
-
     {% endfor %}
 {% endblock %}
 
