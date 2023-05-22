@@ -7,11 +7,6 @@ import json
 from .forms import RegisterForm, LoginForm
 
 
-##############################################
-# CHANGE VIEWS TO CLASS-BASED VIEWS!!!       #
-##############################################
-
-
 def check_login(request):
     if request.user.is_authenticated:
         return redirect("news")
@@ -37,16 +32,13 @@ def login_view(request):
 
                 if user is not None:
                     login(request, user)
-                    print('User logged in successfully')
                     return JsonResponse(
                         {"ok": True, "empty_fields": False, "message": "Logged in successfully"})
                 else:
-                    print('username or password is incorrect')
                     context["errors"] = [error[0] for error in form.errors.values()]
                     return JsonResponse(
                         {"ok": False, "empty_fields": True, "message": "Invalid username or password"})
             else:
-                print('invalid from -> fill in the username and password')
                 context["errors"] = [error[0] for error in form.errors.values()]
                 return JsonResponse(
                     {"ok": False, "empty_fields": True, "message": "Please enter username and password"})
@@ -74,14 +66,10 @@ def register_view(request):
                 password_confirm = json.loads(request.body)['password2']
                 email = json.loads(request.body)['email']
                 form.save()
-                print(username, name, lastname, phone, password, password_confirm, email)
-                print('User created')
                 return JsonResponse({"ok": True, "empty_fields": False, "message": "User created successfully"})
             else:
-                print('Empty fields')
                 context["errors"] = [error[0] + '\n' for error in form.errors.values() if
                                      error[0] != 'This field is required.']
-                print(context["errors"])
                 return JsonResponse({"ok": False, "form_error": True, "error": context["errors"]})
     return render(request, "login/register.html")
 

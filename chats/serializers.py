@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Messages
 from accounts.models import User
+from cryptography.fernet import Fernet
 
 
 class MessageSerializer(serializers.ModelSerializer):
