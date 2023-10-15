@@ -27,7 +27,7 @@ Users can create, edit, and share posts on the platform. They can write text, at
 ## Friend Requests
 Users send and recieve friend requests and restrict their profile to the people whom they want to
 
-![Friend_requests](https://github.com/Masoudvahid/SocialNetworkingSite/blob/main/examples/friend_request.png)
+![Friend_requests](https://github.com/Masoudvahid/SocialNetworkingSite/blob/main/examples/friend_request.png)  
 *Image: Friend request section of the social media site.*
 
 
