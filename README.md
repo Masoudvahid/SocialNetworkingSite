@@ -3,7 +3,7 @@
 ## Login
 To access the social media site, users need to log in with their credentials. This feature ensures the security and privacy of user accounts.
 
-![Login](https://github.com/yourusername/yourrepository/raw/main/examples/login.png)
+![Login](https://github.com/Masoudvahid/SocialNetworkingSite/blob/main/examples/login.png)
 *Image: Login page of the social media site.*
 
 ## Chat
