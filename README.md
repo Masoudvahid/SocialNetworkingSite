@@ -48,7 +48,7 @@ Users send and recieve friend requests and restrict their profile to the people 
 - [x] Add comments
 - [x] Add likes
 
-### Notes:
+### How to Run:
 
 - To create user for admin, use 'createsuperuser'
 - Remember to make migrations to DB.
